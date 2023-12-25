@@ -35,7 +35,7 @@ const reverseWordsInArray = strings => {
     string
       .split('')
       .reverse()
-      .join('')
+      .join(''),
   );
 };
 
@@ -63,9 +63,7 @@ const sumNumbers = numbers => {
 };
 
 const sortByLastLetter = strings => {
-  return strings.sort(
-    (a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1)
-  );
+  return strings.sort((a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1));
 };
 
 module.exports = {
@@ -83,5 +81,5 @@ module.exports = {
   elementsStartingWithAVowel,
   removeSpaces,
   sumNumbers,
-  sortByLastLetter
+  sortByLastLetter,
 };
