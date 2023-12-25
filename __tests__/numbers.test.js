@@ -99,10 +99,21 @@ describe('/numbers', () => {
         });
     });
 
-    it('multiplies stringified numbers', done => {
+    it('multiplies number by 0', done => {
       request(app)
         .post('/numbers/multiply')
-        .send({ a: '9', b: '0' })
+        .send({ a: 9, b: 0 })
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body).toEqual({ result: 0 });
+          done();
+        });
+    });
+
+    it('multiplies stringified number by 0', done => {
+      request(app)
+        .post('/numbers/multiply')
+        .send({ a: '0', b: '9' })
         .then(res => {
           expect(res.status).toEqual(200);
           expect(res.body).toEqual({ result: 0 });
@@ -202,7 +213,7 @@ describe('/numbers', () => {
   });
 
   describe('POST /remainder', () => {
-    xit('gives the remainder of dividing 18 by 5', done => {
+    it('gives the remainder of dividing 18 by 5', done => {
       request(app)
         .post('/numbers/remainder')
         .send({ a: 18, b: 5 })
@@ -213,7 +224,7 @@ describe('/numbers', () => {
         });
     });
 
-    xit('gives the remainder of dividing -4 by 8', done => {
+    it('gives the remainder of dividing -4 by 8', done => {
       request(app)
         .post('/numbers/remainder')
         .send({ a: '-4', b: '8' })
@@ -224,7 +235,7 @@ describe('/numbers', () => {
         });
     });
 
-    xit('gives the remainder of dividing 0 by a number', done => {
+    it('gives the remainder of dividing 0 by a number', done => {
       request(app)
         .post('/numbers/remainder')
         .send({ a: 0, b: 10 })
@@ -235,7 +246,7 @@ describe('/numbers', () => {
         });
     });
 
-    xit('errors if dividing by 0', done => {
+    it('errors if dividing by 0', done => {
       request(app)
         .post('/numbers/remainder')
         .send({ a: 10, b: 0 })
